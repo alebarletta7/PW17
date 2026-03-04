@@ -690,8 +690,8 @@ body{
 footer{
   margin-top:80px;
   padding:60px 0 70px;
-  background:#070c0b;
-  border-top:1px solid #1b2622;
+  background:transparent;
+  border-top:1px solid rgba(255,255,255,0.08);
 }
 
 .footer-card{
@@ -699,19 +699,10 @@ footer{
   margin:auto;
   padding:22px;
   border-radius:18px;
-  background:#0f1714;   /* colore pieno */
-  border:1px solid #1f2c27;
+  background:rgba(15,23,20,0.55);
+  backdrop-filter: blur(12px);
+  border:1px solid rgba(255,255,255,0.10);
   box-shadow:0 24px 90px rgba(0,0,0,.55);
-}
-
-.footer-top{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  justify-content:center;
-  padding-bottom:12px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  margin-bottom:12px;
 }
 
 .footer-pill{
@@ -746,6 +737,13 @@ footer{
 .footer-links a:hover{
   color:rgba(233,243,239,0.95);
   border-color:rgba(83,209,138,0.55);
+}
+
+footer .reveal{
+  opacity:1 !important;
+  filter:none !important;
+  transform:none !important;
+  animation:none !important;
 }
 
 /* ======================
@@ -844,7 +842,7 @@ footer{
   <div class="wrap">
     <div class="reveal">
       <h2 class="title">Iniziative di sostenibilità</h2>
-      <p class="lead">Tre card in stile startup, con immagini e glow al passaggio del mouse (solo CSS).</p>
+      <p class="lead">Focus su tre aree chiave: energia, agricoltura e filiera.</p>
     </div>
 
     <div class="cards">
@@ -905,7 +903,7 @@ footer{
 
       <div class="row">
         <div>2024</div><div>Bilancio sostenibilità</div><div>Italiano</div>
-        <div><a class="dl" href="https://www.linsalatadellorto.it/wp-content/uploads/2025/11/ido-bilancio-sostenibilita-ita-web-version.pdf">Scarica</a></div>
+        <div><a class="dl" href="https://www.linsalatadellorto.it/wp-content/uploads/2025/11/ido-bilancio-sostenibilita-ita-web-version.pdf">Download</a></div>
       </div>
 
       <div class="row">
@@ -915,7 +913,7 @@ footer{
 
       <div class="row">
         <div>2022</div><div>Bilancio sostenibilità</div><div>Italiano</div>
-        <div><a class="dl" href="https://www.linsalatadellorto.it/wp-content/uploads/2022/09/linsalatadellorto-bilancio-sostenibilita-IT.pdf">Scarica</a></div>
+        <div><a class="dl" href="https://www.linsalatadellorto.it/wp-content/uploads/2022/09/linsalatadellorto-bilancio-sostenibilita-IT.pdf">Download</a></div>
       </div>
     </div>
   </div>
@@ -924,22 +922,17 @@ footer{
 <section class="section" id="crediti">
   <div class="wrap reveal delay-2">
     <h2 class="title">Crediti</h2>
-    <p class="lead">Project work: Alessandro Gaudenzio Barletta – Matricola 0312300077</p>
+    <p class="lead">Project work a cura di Alessandro Gaudenzio Barletta</p>
+    <p class="lead">Matricola: 0312300077</p>
   </div>
 </section>
 
 <footer>
   <div class="footer-card reveal delay-3">
-    <div class="footer-top">
-      <span class="footer-pill">HTML + CSS</span>
-      <span class="footer-pill">No JavaScript</span>
-      <span class="footer-pill">Premium UI</span>
-    </div>
     <div class="footer-text">Pagina dimostrativa – Report di sostenibilità</div>
     <div class="footer-links">
       <a href="#intro">Su</a>
       <a href="#download">Download</a>
-      <a href="#crediti">Crediti</a>
     </div>
   </div>
 </footer>
