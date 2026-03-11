@@ -21,9 +21,9 @@ La pagina è organizzata nelle seguenti sezioni:
 
 - **Iniziative di sostenibilità**  
   Tre card informative su:
-  - energia rinnovabile
-  - agricoltura sostenibile
-  - filiera controllata
+  - Transizione energetica
+  - Agricoltura biologica e integrata
+  - Filiera tracciata e responsabile
 
 - **Dati principali**  
   Indicatori sintetici relativi alle attività dell'azienda.
