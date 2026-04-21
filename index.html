@@ -26,15 +26,28 @@
     /* Variabili del tema (colori, dimensioni e layout) */
     :root {
       --bg: #070c0b;
+      /* Sfondo principale della pagina */
       --panel: #0f1714;
+      /* Sfondo per pannelli secondari */
       --text: #e9f3ef;
+      /* Colore testo principale */
       --muted: rgba(233, 243, 239, 0.75);
+      /* Testo attenuato */
       --accent: #53d18a;
+      /* Variabile Colore Primario */
       --accent2: #2fe3b9;
+      /* Variabile Colore Secondario */
       --accent3: #7aa7ff;
+      /* Variabile Colore Terziario */
       --radius: 22px;
+      /* Raggio angoli */
       --maxw: 1100px;
+      /* Larghezza massima del contenuto */
     }
+
+    /* Modificando una singola variabile CSS definita in :root, si aggiorna automaticamente
+     l intera palette in tutti gli elementi che la utilizzano tramite riferimento (var()). */
+
 
     /* Reset base e impostazioni globali */
     * {
@@ -50,14 +63,22 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
         radial-gradient(1100px 600px at 20% -10%, rgba(83, 209, 138, 0.22), transparent 55%),
+        /* Gradient 1: zona in alto a sinistra */
         radial-gradient(900px 520px at 90% 10%, rgba(47, 227, 185, 0.18), transparent 55%),
+        /* Gradient 2: zona in alto a destra */
         radial-gradient(900px 520px at 55% 120%, rgba(83, 209, 138, 0.10), transparent 60%),
+        /* Gradient 3: zona in basso al centro */
         var(--bg);
+      /* Colore di base da variabile CSS */
       color: var(--text);
       text-align: center;
       line-height: 1.6;
       padding-bottom: 40px;
     }
+
+    /* I tre livelli sovrapposti simulano un'illuminazione ambientale senza il peso di
+     immagini esterne, mantenendo i tempi di caricamento bassi */
+
 
     /* Contenitore centrale con larghezza massima */
     .wrap {
@@ -183,17 +204,30 @@
 
     .mnav {
       display: none;
+      /* Il menu è nascosto per impostazione predefinita */
     }
 
+    /* Si attiva quando il suo ID coincide con il fragment URL corrente */
     .mnav:target {
       display: block;
       position: fixed;
       inset: 0;
+      /* Copre l'intera viewport */
       z-index: 2000;
       background: rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(6px);
       padding: 80px 16px 16px;
     }
+
+    /* Nel codice HTML il menu è associato all'identificatore "mnav"
+   mediante <div id="mnav" class="mnav" aria-label="Menu mobile">.
+   Il relativo pulsante di apertura punta a #mnav, attivando così
+   la visualizzazione del pannello tramite il solo uso di HTML e CSS */
+
+    /* La chiusura avviene in modo implicito quando l'utente seleziona
+   un link interno al menu oppure il collegamento "Chiudi":
+   il fragment identifier dell'URL cambia e l'elemento non corrisponde
+   piu alla pseudo-classe :target */
 
     .mnav-panel {
       max-width: 520px;
@@ -369,6 +403,10 @@
     /* Layout card con CSS Grid */
     .cards {
       display: grid;
+      /* auto-fill: il browser calcola il numero di colonne disponibili
+     minmax(280px, 1fr): ogni colonna è almeno 280px, al massimo 1fr
+     Risultato: 3 colonne su desktop, 2 su tablet, 1 su mobile
+     senza alcuna media query specifica per il numero di colonne */
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
       margin-top: 44px;
@@ -588,18 +626,34 @@
       animation: none !important;
     }
 
-    /* Animazioni di reveal attive solo se supportate dal browser */
+    /* Attivazione condizionale tramite @supports: le animazioni vengono applicate solo
+     nei browser che supportano le Scroll-Driven Animations (animation-timeline: view()),
+      garantendo compatibilità progressiva  */
+
     @supports (animation-timeline: view()) {
+
+      /* Gli elementi con classe .reveal partono da uno stato iniziale nascosto (opacità 0), 
+      leggermente traslato sull’asse Y e con una lieve sfocatura, per poi animarsi verso 
+      lo stato finale visibile */
       .reveal {
         opacity: 0;
         transform: translateY(22px) scale(0.985);
-        filter: blur(3px);
+        filter: blur(3px);        /* Leggera sfocatura iniziale */
         will-change: opacity, transform, filter;
         animation: reveal 1s ease-out both;
+
+        /* L’animazione è agganciata allo scroll della viewport tramite animation-timeline: view(),
+         quindi non è temporale ma dipendente dalla posizione dell’elemento nel viewport */
         animation-timeline: view();
+
+        /* La proprietà animation-range definisce con precisione il punto di inizio e 
+        fine dell’animazione in funzione della visibilità dell’elemento (es. dal 15% al 28%), 
+        creando un effetto progressivo mentre entra in scena. */
         animation-range: entry 15% cover 28%;
       }
 
+      /* Le classi .delay-* introducono uno sfasamento controllato variando il range di attivazione, 
+      permettendo animazioni sfalsate tra più elementi senza usare JavaScript */
       .delay-1 {
         animation-range: entry 18% cover 32%;
       }
@@ -612,6 +666,8 @@
         animation-range: entry 26% cover 40%;
       }
 
+      /* Il keyframe reveal definisce lo stato finale: opacità piena,
+       posizione originale e rimozione della sfocatura */
       @keyframes reveal {
         to {
           opacity: 1;
@@ -621,7 +677,7 @@
       }
     }
 
-    /* Disattiva animazioni se prefers-reduced-motion è attivo */
+    /* Rispetto della preferenza utente per il moto ridotto */
     @media (prefers-reduced-motion: reduce) {
       * {
         scroll-behavior: auto !important;
